@@ -1,8 +1,21 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isGestorProOwner() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email == 'msalinas8811@gmail.com';
+    }
+
+    match /orders/{recordId} { allow read, write: if isGestorProOwner(); }
+    match /tasks/{recordId} { allow read, write: if isGestorProOwner(); }
+    match /products/{recordId} { allow read, write: if isGestorProOwner(); }
+    match /movements/{recordId} { allow read, write: if isGestorProOwner(); }
+    match /technicians/{recordId} { allow read, write: if isGestorProOwner(); }
+    match /gestorpro_meta/{recordId} { allow read, write: if isGestorProOwner(); }
+
     match /{document=**} {
-      allow read, write: if true; // Ajustar según roles de usuario
+      allow read, write: if false;
     }
   }
 }

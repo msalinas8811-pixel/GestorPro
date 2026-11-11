@@ -1,1 +1,0 @@
-// Ver types del proyecto GestorPro

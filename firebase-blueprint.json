@@ -1,0 +1,123 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Orden de trabajo o reparación de vehículos recreativos y equipos",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "title": { "type": "string" },
+        "clientName": { "type": "string" },
+        "clientPhone": { "type": "string" },
+        "clientEmail": { "type": "string" },
+        "category": { "type": "string" },
+        "priority": { "type": "string", "enum": ["Baja", "Media", "Alta", "Urgente"] },
+        "status": { "type": "string" },
+        "progress": { "type": "number" },
+        "estimatedBudget": { "type": "number" },
+        "actualCost": { "type": "number" },
+        "assignedTo": { "type": "string" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "deadline": { "type": "string" }
+      },
+      "required": ["code", "title", "clientName", "status"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Tarea operativa con checklist y seguimiento fotográfico",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "orderId": { "type": "string" },
+        "orderCode": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "assignedTo": { "type": "string" },
+        "priority": { "type": "string" },
+        "status": { "type": "string" },
+        "progress": { "type": "number" },
+        "dueDate": { "type": "string" },
+        "estimatedHours": { "type": "number" },
+        "actualHours": { "type": "number" }
+      },
+      "required": ["code", "title", "status"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Repuesto o accesorio en bodega de Importoys SV",
+      "type": "object",
+      "properties": {
+        "sku": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "stock": { "type": "number" },
+        "minStock": { "type": "number" },
+        "unitPrice": { "type": "number" },
+        "costPrice": { "type": "number" },
+        "location": { "type": "string" },
+        "unit": { "type": "string" }
+      },
+      "required": ["sku", "name", "stock", "minStock"]
+    },
+    "StockMovement": {
+      "title": "StockMovement",
+      "description": "Movimiento de entrada o salida en Kardex de bodega",
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "sku": { "type": "string" },
+        "type": { "type": "string", "enum": ["ENTRADA", "SALIDA", "AJUSTE"] },
+        "quantity": { "type": "number" },
+        "previousStock": { "type": "number" },
+        "newStock": { "type": "number" },
+        "reason": { "type": "string" },
+        "orderCode": { "type": "string" },
+        "user": { "type": "string" }
+      },
+      "required": ["timestamp", "productId", "type", "quantity", "reason"]
+    },
+    "Technician": {
+      "title": "Technician",
+      "description": "Operador y técnico de taller y bodega con clave/PIN",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string" },
+        "username": { "type": "string" },
+        "pin": { "type": "string" },
+        "specialty": { "type": "string" },
+        "role": { "type": "string" },
+        "active": { "type": "boolean" },
+        "phone": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fullName", "username", "pin", "role"]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": { "$ref": "Order" },
+      "description": "Colección de órdenes de reparación técnicas"
+    },
+    "/tasks/{taskId}": {
+      "schema": { "$ref": "Task" },
+      "description": "Colección de tareas operativas"
+    },
+    "/inventory/{productId}": {
+      "schema": { "$ref": "Product" },
+      "description": "Colección de repuestos de almacén"
+    },
+    "/movements/{movementId}": {
+      "schema": { "$ref": "StockMovement" },
+      "description": "Colección de auditoría Kardex de movimientos"
+    },
+    "/technicians/{techId}": {
+      "schema": { "$ref": "Technician" },
+      "description": "Colección de operadores de taller y bodega"
+    }
+  }
+}

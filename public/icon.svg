@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Rounded Container -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="none" stroke="#ef4444" stroke-width="6" stroke-opacity="0.3" />
+  
+  <!-- Shield Badge Background -->
+  <path d="M256 80 L390 130 C390 270 256 380 256 420 C256 380 122 270 122 130 Z" fill="url(#redGrad)" filter="drop-shadow(0 12px 24px rgba(0,0,0,0.5))" />
+  
+  <!-- Crossed Wrench / Flame Icon -->
+  <path d="M256 140 C280 180 300 210 300 240 C300 270 280 295 256 295 C232 295 212 270 212 240 C212 210 232 180 256 140 Z" fill="url(#goldGrad)" />
+  <path d="M256 210 C265 230 270 245 270 255 C270 268 263 275 256 275 C249 275 242 268 242 255 C242 245 247 230 256 210 Z" fill="#ffffff" />
+  
+  <!-- Wrench Cross -->
+  <path d="M190 320 L322 320 M210 350 L302 350" stroke="#ffffff" stroke-width="12" stroke-linecap="round" opacity="0.9" />
+  
+  <!-- Text Brand -->
+  <text x="256" y="390" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="900" letter-spacing="4" text-anchor="middle">IMPORTOYS</text>
+  <text x="256" y="465" fill="#ef4444" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" letter-spacing="3" text-anchor="middle">EL SALVADOR 🇸🇻</text>
+</svg>

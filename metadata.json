@@ -1,0 +1,6 @@
+{
+  "name": "GestorPro - Control de Órdenes, Tareas e Inventario",
+  "description": "Sistema profesional para el seguimiento de órdenes de trabajo, control de tareas con bitácora fotográfica, inventario con kardex y reportes ejecutivos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

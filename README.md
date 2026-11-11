@@ -1,60 +1,39 @@
-# GestorPro - Control de Órdenes, Tareas e Inventario
+# GestorPro — Control de órdenes, tareas e inventario
 
-Sistema profesional de operaciones para seguimiento de órdenes de trabajo (OT), gestión de tareas con bitácora fotográfica de avances, control de inventario con kardex automatizado y reportes ejecutivos.
+PWA en español para registrar órdenes de trabajo, tareas, avances fotográficos, técnicos, inventario, movimientos y reportes.
 
----
+## Ejecutar localmente
 
-## 🚀 Guía Rápida para Subir a GitHub
-
-1. **Descomprimir el archivo ZIP** en tu carpeta de preferencia.
-2. Abre una terminal dentro de la carpeta del proyecto y ejecuta:
+Requiere Node.js y npm.
 
 ```bash
-# 1. Inicializar repositorio Git local
-git init
-
-# 2. Agregar todos los archivos
-git add .
-
-# 3. Crear el primer commit
-git commit -m "feat: initial commit GestorPro con órdenes, tareas e inventario"
-
-# 4. Vincular con tu repositorio en GitHub (crea uno nuevo en github.com/new)
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/TU_REPOSITORIO.git
-
-# 5. Subir a GitHub
-git push -u origin main
-```
-
----
-
-## 📦 Instalación y Ejecución Local
-
-```bash
-# Instalar dependencias
 npm install
-
-# Iniciar servidor de desarrollo
 npm run dev
 ```
 
-Abre en tu navegador en `http://localhost:3000`.
+Vite muestra la dirección local en la terminal.
 
----
+## Firebase conectado
 
-## ⚡ Conexión con Firebase Firestore (Opcional)
+- Proyecto: `gestorpro-importoys-2026`.
+- Firestore Standard, región `us-central1`.
+- Google Sign-In habilitado.
+- Los registros se guardan en Firestore al iniciar sesión y se conservan también en el almacenamiento local del navegador.
+- Las reglas autorizan únicamente la cuenta Google verificada `msalinas8811@gmail.com`.
 
-1. Ve a [Firebase Console](https://console.firebase.google.com/) y crea un proyecto nuevo.
-2. Activa **Firestore Database** en modo de producción.
-3. Copia tus credenciales en `src/firebaseConfig.ts` o variables de entorno `.env`.
-4. Utiliza las reglas de seguridad incluidas en el archivo `firestore.rules`.
+La configuración web de Firebase está en `firebase-applet-config.json`. La clave web de Firebase se usa en el cliente; la protección de los datos depende de las reglas de Firestore, que restringen el acceso a la cuenta autorizada.
 
----
+Las fotografías se almacenan dentro de cada registro. La sincronización rechaza un registro que supere 850 KB para evitar exceder el límite de Firestore; reduce las fotografías si aparece ese aviso.
 
-## 📁 Estructura del Proyecto
+## Compilar y publicar en Firebase Hosting
 
-- `src/components/`: Módulos de Órdenes, Tareas, Inventario, Reportes, Modales y Fotografías.
-- `src/types/`: Definiciones TypeScript estrictas.
-- `src/services/`: Servicios de almacenamiento persistente, exportaciones CSV y generador de ZIP.
-- `backup-datos-gestorpro.json`: Copia exacta de los registros actuales listos para importar.
+```bash
+npm run build
+firebase deploy --only firestore:rules,hosting
+```
+
+La configuración publica en el sitio `gestorpro-importoys-2026.web.app`. El proyecto predeterminado está fijado en `.firebaserc`.
+
+## Datos de ejemplo
+
+Los registros iniciales son ficticios. Al iniciar sesión por primera vez, se copian a Firestore si todavía no existen registros remotos. Las copias de seguridad JSON son locales y no deben subirse al repositorio público.
